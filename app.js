@@ -21,16 +21,12 @@ app.get('/', (req, res) => {
     res.render('home')
 })
 
-app.get('/makeorganization', async (req, res) => {
-    const org = new Organization({
-        name: 'TestOrg',
-        numEmployees: 1,
-        description: 'Not much to say',
-        location: 'only in imagination'
-    })
-    await org.save();
-    res.send(org);
+app.get('/organizations', async (req, res) => {
+    const organizations = await Organization.find({});
+    res.render('organizations/index', {organizations})
 })
+
+
 
 app.listen(3000, () => {
     console.log('Serving on port 3000')
