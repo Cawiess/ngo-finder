@@ -10,7 +10,9 @@
     <h1>All organizations</h1>
     <ul>
         <% for (let organization of organizations) {%>
-            <li><%= organization.name %> - <%= organization.location %></li>
+            <li>
+                <a href="/organizations/<%= organization._id %>"> <%= organization.name %> </a>
+            </li>
         <% }%>
     </ul>
 </body>

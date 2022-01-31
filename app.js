@@ -26,6 +26,11 @@ app.get('/organizations', async (req, res) => {
     res.render('organizations/index', {organizations})
 })
 
+app.get('/organizations/:id', async (req, res) => {
+    const organization = await Organization.findById(req.params.id);
+    res.render('organizations/show', {organization})
+})
+
 
 
 app.listen(3000, () => {
