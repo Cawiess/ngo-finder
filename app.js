@@ -59,6 +59,12 @@ app.put('/organizations/:id', async(req, res) => {
     res.redirect(`/organizations/${organization._id}`)
 })
 
+app.delete('/organizations/:id', async (req, res) => {
+    const { id } = req.params;
+    await Organization.findByIdAndDelete(id);
+    res.redirect('/organizations');
+})
+
 
 
 
