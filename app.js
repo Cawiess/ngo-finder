@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
 const Organization = require('./models/organization');
 
 mongoose.connect('mongodb://localhost:27017/ngo-finder');
@@ -16,7 +17,8 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: true}));
+app.use(methodOverride('_method'));
 
 
 app.get('/', (req, res) => {
@@ -43,6 +45,18 @@ app.post('/organizations', async(req, res) => {
 app.get('/organizations/:id', async (req, res) => {
     const organization = await Organization.findById(req.params.id);
     res.render('organizations/show', {organization});
+})
+
+app.get('/organizations/:id/edit', async (req, res) => {
+    const organization = await Organization.findById(req.params.id);
+    res.render('organizations/edit', {organization});
+})
+
+app.put('/organizations/:id', async(req, res) => {
+    //res.send("I WORK!");
+    const { id } = req.params;
+    const organization = await Organization.findByIdAndUpdate(id, {...req.body.organization}, {new: true});
+    res.redirect(`/organizations/${organization._id}`)
 })
 
 
