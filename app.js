@@ -63,6 +63,10 @@ app.delete('/organizations/:id', async (req, res) => {
     const { id } = req.params;
     await Organization.findByIdAndDelete(id);
     res.redirect('/organizations');
+});
+
+app.use((req, res) => {
+    res.status(404).send('Not found!')
 })
 
 
