@@ -5,8 +5,20 @@
 </div>
 <ul>
     <% for (let organization of organizations) {%>
-        <li>
-            <a href="/organizations/<%= organization._id %>"> <%= organization.name %> </a>
-        </li>
+        <div class="card" mb-3>
+            <div class="row">
+                <div class="col-mg-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=organization.name%></h5>
+                        <p class="card-text"><%=organization.description%></p>
+                        <p class="card-text">
+                            <small class="text-muted"><%=organization.location%> </small>
+                        </p>
+                        <a class="btn btn-primary" href="organizations/<%=organization._id%> ">Details</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     <% }%>
 </ul>
