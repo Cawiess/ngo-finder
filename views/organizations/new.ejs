@@ -1,12 +1,28 @@
 <% layout('layouts/boilerplate')%>
-<form action="/organizations" method="POST">
-    <div>
-        <label for="name">Name</label>
-        <input type="text" id ="name" name="organization[name]">
+<div class="row">
+    <h1 class="text-center">New Organizaton</h1>
+    <div class="col-6 offset-3">
+        <form action="/organizations" method="POST">
+            <div class="mb-3">
+                <label class="form-label" for="name">Name</label>
+                <input class="form-control" type="text" id ="name" name="organization[name]">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class="form-control" type="text" id ="location" name="organization[location]">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" type="text" id ="location" name="organization[description]"></textarea>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Number of employees</span>
+                <input type="text" class="form-control" id="numEmployees" placeholder="0" name="organization[numEmployees]">
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-success">Add Organization</button>
+            </div>
+            
+        </form>
     </div>
-    <div>
-        <label for="location">Location</label>
-        <input type="text" id ="location" name="organization[location]">
-    </div>
-    <button>Add Organization</button>
-</form>
+</div>
